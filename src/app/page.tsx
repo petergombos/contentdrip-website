@@ -87,12 +87,14 @@ export default function HomePage() {
             >
               docs
             </Link>
-            <Link
-              href="/mindful-productivity"
+            <a
+              href="https://my-contentdrip-course.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-mono text-sm text-foreground/45 no-underline transition-colors hover:text-foreground"
             >
               demo
-            </Link>
+            </a>
             <a
               href="https://github.com/petergombos/contentdrip"
               target="_blank"
@@ -145,12 +147,14 @@ export default function HomePage() {
               Deploy Your First Course
               <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <Link
-              href="/mindful-productivity"
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://my-contentdrip-course.vercel.app/"
               className="inline-flex h-9 items-center border border-foreground/20 px-4 font-mono text-[13px] font-bold uppercase tracking-widest text-foreground/50 no-underline transition-colors hover:border-foreground/35 hover:text-foreground"
             >
-              See a Live Course
-            </Link>
+              See a Demo Course
+            </a>
           </div>
 
           <p className="animate-fade-in-up delay-4 mt-6 font-mono text-xs uppercase tracking-widest text-foreground/20">
@@ -204,7 +208,9 @@ export default function HomePage() {
                   <span className="h-2.5 w-2.5 rounded-full bg-border" />
                   <span className="h-2.5 w-2.5 rounded-full bg-border" />
                 </div>
-                <span className="font-mono text-xs text-foreground/28">day-1.md</span>
+                <span className="font-mono text-xs text-foreground/28">
+                  day-1.md
+                </span>
               </div>
               <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-[1.8] text-foreground/35">
                 <code>
@@ -232,7 +238,9 @@ export default function HomePage() {
                   {"\n\n"}
                   <span className="text-foreground/45">## The Key Idea</span>
                   {"\n\n"}
-                  <span className="text-foreground/45">Content in **markdown**.</span>
+                  <span className="text-foreground/45">
+                    Content in **markdown**.
+                  </span>
                   {"\n\n"}
                   <span className="text-foreground/45">[Read online →](</span>
                   <span className="text-primary">{"{{companionUrl}}"}</span>
@@ -692,7 +700,9 @@ export default function HomePage() {
                 <p className="font-mono text-[13px] font-bold uppercase tracking-wider text-primary">
                   {fact.label}
                 </p>
-                <p className="mt-1 text-[13px] text-foreground/35">{fact.desc}</p>
+                <p className="mt-1 text-[13px] text-foreground/35">
+                  {fact.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -1259,7 +1269,9 @@ export default function HomePage() {
                 <span className="text-foreground/28">
                   {"<Header logo={logoUrl} /> "}
                 </span>
-                <span className="text-foreground/20">{"// ← your component"}</span>
+                <span className="text-foreground/20">
+                  {"// ← your component"}
+                </span>
                 {"\n      "}
                 <span className="text-foreground/28">{"{children}"}</span>
                 {"\n      "}
@@ -1681,12 +1693,14 @@ export default function HomePage() {
               Clone the Repo
               <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <Link
-              href="/mindful-productivity"
+            <a
+              href="https://my-contentdrip-course.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex h-9 items-center border border-foreground/20 px-4 font-mono text-[13px] font-bold uppercase tracking-widest text-foreground/50 no-underline transition-colors hover:border-foreground/35 hover:text-foreground"
             >
-              See a Live Course
-            </Link>
+              Try the Demo Course
+            </a>
           </div>
         </div>
       </section>

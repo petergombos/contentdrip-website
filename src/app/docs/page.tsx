@@ -138,12 +138,14 @@ export default function DocsPage() {
             >
               docs
             </Link>
-            <Link
-              href="/my-course"
+            <a
+              href="https://my-contentdrip-course.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-mono text-sm text-[#666] no-underline transition-colors hover:text-[#e8e8e8]"
             >
               demo
-            </Link>
+            </a>
             <a
               href="https://github.com/petergombos/contentdrip"
               target="_blank"
