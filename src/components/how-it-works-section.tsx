@@ -48,21 +48,21 @@ const DEPLOY_LINES = [
 
 // ── Write: editor lines ──
 const EDITOR_LINES = [
-  { color: "#444", text: "---" },
-  { color: "#666", text: 'subject: "Day 1: Getting Started"' },
-  { color: "#666", text: 'preview: "Your first lesson awaits"' },
-  { color: "#444", text: "---" },
-  { color: "#666", text: "" },
-  { color: "#666", text: "Good morning!" },
-  { color: "#666", text: "" },
-  { color: "#666", text: "Today we're covering the fundamentals" },
-  { color: "#666", text: "of building email courses..." },
-  { color: "#666", text: "" },
-  { color: "#666", text: "## The Key Idea" },
-  { color: "#666", text: "" },
-  { color: "#666", text: "Write in standard **markdown**." },
-  { color: "#666", text: "" },
-  { color: "#c8ff00", text: "[Read online →]({{companionUrl}})" },
+  { colorClass: "text-foreground/28", text: "---" },
+  { colorClass: "text-foreground/45", text: 'subject: "Day 1: Getting Started"' },
+  { colorClass: "text-foreground/45", text: 'preview: "Your first lesson awaits"' },
+  { colorClass: "text-foreground/28", text: "---" },
+  { colorClass: "text-foreground/45", text: "" },
+  { colorClass: "text-foreground/45", text: "Good morning!" },
+  { colorClass: "text-foreground/45", text: "" },
+  { colorClass: "text-foreground/45", text: "Today we're covering the fundamentals" },
+  { colorClass: "text-foreground/45", text: "of building email courses..." },
+  { colorClass: "text-foreground/45", text: "" },
+  { colorClass: "text-foreground/45", text: "## The Key Idea" },
+  { colorClass: "text-foreground/45", text: "" },
+  { colorClass: "text-foreground/45", text: "Write in standard **markdown**." },
+  { colorClass: "text-foreground/45", text: "" },
+  { colorClass: "text-primary", text: "[Read online →]({{companionUrl}})" },
 ];
 
 // ── Drip: inbox emails ──
@@ -126,17 +126,17 @@ export function HowItWorksSection() {
     <div className="mt-10 grid items-start gap-8 lg:grid-cols-[1fr_1fr]">
       {/* Step cards */}
       <div
-        className="grid gap-px bg-[#1a1a1a] p-px sm:grid-cols-2"
+        className="grid gap-px bg-border p-px sm:grid-cols-2"
         onMouseLeave={handleMouseLeave}
       >
         {STEPS.map((s, i) => (
           <div
             key={s.n}
-            className="cursor-pointer bg-[#050505] p-5 transition-all duration-300 md:p-6"
+            className="cursor-pointer bg-background p-5 transition-all duration-300 md:p-6"
             style={{
               borderLeft:
                 i === activeStep
-                  ? "2px solid #c8ff00"
+                  ? "2px solid var(--primary)"
                   : "2px solid transparent",
             }}
             onClick={() => handleStepEnter(i)}
@@ -146,7 +146,7 @@ export function HowItWorksSection() {
               className="font-mono text-[13px] transition-colors duration-300"
               style={{
                 color:
-                  i === activeStep ? "#c8ff00" : "rgba(200,255,0,0.4)",
+                  i === activeStep ? "var(--primary)" : "color-mix(in srgb, var(--primary) 40%, transparent)",
               }}
             >
               {s.n}
@@ -154,7 +154,7 @@ export function HowItWorksSection() {
             <h3 className="mt-2 text-xl font-bold tracking-tight">
               {s.title}
             </h3>
-            <p className="mt-2 text-[15px] leading-relaxed text-[#777]">
+            <p className="mt-2 text-[15px] leading-relaxed text-foreground/50">
               {s.desc}
             </p>
           </div>
@@ -163,7 +163,7 @@ export function HowItWorksSection() {
 
       {/* Animated visual — changes per step */}
       <div className="lg:sticky lg:top-8">
-        <div className="border border-[#1a1a1a] bg-[#0a0a0a]">
+        <div className="border border-border bg-card">
           {activeStep === 0 && (
             <TerminalPanel
               lines={CLONE_LINES}
@@ -215,11 +215,11 @@ function TerminalPanel({
 
   return (
     <>
-      <div className="flex items-center gap-1.5 border-b border-[#1a1a1a] px-4 py-2">
-        <span className="h-2 w-2 rounded-full bg-[#333]" />
-        <span className="h-2 w-2 rounded-full bg-[#333]" />
-        <span className="h-2 w-2 rounded-full bg-[#333]" />
-        <span className="ml-auto font-mono text-xs text-[#333]">
+      <div className="flex items-center gap-1.5 border-b border-border px-4 py-2">
+        <span className="h-2 w-2 rounded-full bg-foreground/20" />
+        <span className="h-2 w-2 rounded-full bg-foreground/20" />
+        <span className="h-2 w-2 rounded-full bg-foreground/20" />
+        <span className="ml-auto font-mono text-xs text-foreground/20">
           {label}
         </span>
       </div>
@@ -229,11 +229,11 @@ function TerminalPanel({
         ))}
         {typingLine?.type === "cmd" && (
           <p>
-            <span className="text-[#c8ff00]">$</span>{" "}
-            <span className="text-[#999]">
+            <span className="text-primary">$</span>{" "}
+            <span className="text-muted-foreground">
               {typingLine.text.slice(0, typedChars)}
             </span>
-            <span className="animate-cursor-blink ml-0.5 inline-block h-3.5 w-[7px] translate-y-[3px] bg-[#c8ff00]" />
+            <span className="animate-cursor-blink ml-0.5 inline-block h-3.5 w-[7px] translate-y-[3px] bg-primary" />
           </p>
         )}
       </div>
@@ -249,15 +249,15 @@ function TerminalLine({
   if (line.type === "cmd") {
     return (
       <p>
-        <span className="text-[#c8ff00]">$</span>{" "}
-        <span className="text-[#999]">{line.text}</span>
+        <span className="text-primary">$</span>{" "}
+        <span className="text-muted-foreground">{line.text}</span>
       </p>
     );
   }
   if (line.type === "ok") {
-    return <p className="text-[#c8ff00]/60">{line.text}</p>;
+    return <p className="text-primary/60">{line.text}</p>;
   }
-  return <p className="text-[#444]">{line.text}</p>;
+  return <p className="text-foreground/28">{line.text}</p>;
 }
 
 // ── Editor panel (Write) ──
@@ -277,13 +277,13 @@ function EditorPanel({ progress }: { progress: number }) {
 
   return (
     <>
-      <div className="flex items-center gap-2 border-b border-[#1a1a1a] px-4 py-2">
+      <div className="flex items-center gap-2 border-b border-border px-4 py-2">
         <div className="flex gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-[#333]" />
-          <span className="h-2 w-2 rounded-full bg-[#333]" />
-          <span className="h-2 w-2 rounded-full bg-[#333]" />
+          <span className="h-2 w-2 rounded-full bg-foreground/20" />
+          <span className="h-2 w-2 rounded-full bg-foreground/20" />
+          <span className="h-2 w-2 rounded-full bg-foreground/20" />
         </div>
-        <span className="font-mono text-xs text-[#444]">
+        <span className="font-mono text-xs text-foreground/28">
           emails/day-1.md
         </span>
       </div>
@@ -292,12 +292,12 @@ function EditorPanel({ progress }: { progress: number }) {
         className="h-[280px] overflow-hidden p-4 font-mono text-[13px] leading-[1.9]"
       >
         {EDITOR_LINES.slice(0, visibleLines).map((line, i) => (
-          <p key={i} style={{ color: line.color, minHeight: "1.9em" }}>
+          <p key={i} className={line.colorClass} style={{ minHeight: "1.9em" }}>
             {line.text || "\u00A0"}
           </p>
         ))}
         {visibleLines < EDITOR_LINES.length && (
-          <span className="animate-cursor-blink inline-block h-3.5 w-[7px] translate-y-[1px] bg-[#c8ff00]" />
+          <span className="animate-cursor-blink inline-block h-3.5 w-[7px] translate-y-[1px] bg-primary" />
         )}
       </div>
     </>
@@ -314,9 +314,9 @@ function InboxPanel({ progress }: { progress: number }) {
 
   return (
     <>
-      <div className="flex items-center gap-2 border-b border-[#1a1a1a] px-4 py-2">
+      <div className="flex items-center gap-2 border-b border-border px-4 py-2">
         <svg
-          className="h-4 w-4 text-[#333]"
+          className="h-4 w-4 text-foreground/20"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -328,10 +328,10 @@ function InboxPanel({ progress }: { progress: number }) {
             d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-17.5 0V6.75A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25v6.75m-19.5 0v4.5A2.25 2.25 0 004.5 20.25h15a2.25 2.25 0 002.25-2.25v-4.5"
           />
         </svg>
-        <span className="font-mono text-xs text-[#444]">
+        <span className="font-mono text-xs text-foreground/28">
           Subscriber inbox
         </span>
-        <span className="ml-auto font-mono text-[10px] text-[#333]">
+        <span className="ml-auto font-mono text-[10px] text-foreground/20">
           you@example.com
         </span>
       </div>
@@ -355,9 +355,9 @@ function InboxPanel({ progress }: { progress: number }) {
                 <div
                   className="flex items-center gap-3 border px-4 py-3 transition-colors duration-500"
                   style={{
-                    borderColor: isLatest ? "#c8ff0030" : "#1a1a1a",
+                    borderColor: isLatest ? "color-mix(in srgb, var(--primary) 19%, transparent)" : "var(--border)",
                     backgroundColor: isLatest
-                      ? "rgba(200,255,0,0.02)"
+                      ? "color-mix(in srgb, var(--primary) 2%, transparent)"
                       : "transparent",
                   }}
                 >
@@ -365,7 +365,7 @@ function InboxPanel({ progress }: { progress: number }) {
                     className="h-4 w-4 shrink-0 transition-colors duration-500"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke={isLatest ? "#c8ff00" : "#333"}
+                    stroke={isLatest ? "var(--primary)" : "var(--border)"}
                     strokeWidth={1.5}
                   >
                     <path
@@ -378,12 +378,12 @@ function InboxPanel({ progress }: { progress: number }) {
                     <p
                       className="font-mono text-[12px] font-bold transition-colors duration-500"
                       style={{
-                        color: isLatest ? "#c8ff00" : "#666",
+                        color: isLatest ? "var(--primary)" : "var(--muted-foreground)",
                       }}
                     >
                       {email.label}
                     </p>
-                    <p className="truncate font-mono text-[11px] text-[#444]">
+                    <p className="truncate font-mono text-[11px] text-foreground/28">
                       {email.subject}
                     </p>
                   </div>
@@ -392,16 +392,16 @@ function InboxPanel({ progress }: { progress: number }) {
                       className="h-1 w-6 rounded-full transition-colors duration-500"
                       style={{
                         backgroundColor: isLatest
-                          ? "#c8ff0015"
-                          : "#111",
+                          ? "color-mix(in srgb, var(--primary) 8%, transparent)"
+                          : "var(--secondary)",
                       }}
                     />
                     <div
                       className="h-1 w-4 rounded-full transition-colors duration-500"
                       style={{
                         backgroundColor: isLatest
-                          ? "#c8ff0010"
-                          : "#0d0d0d",
+                          ? "color-mix(in srgb, var(--primary) 6%, transparent)"
+                          : "var(--background)",
                       }}
                     />
                   </div>

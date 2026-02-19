@@ -86,23 +86,23 @@ export function HeroAnimation() {
         {/* Subscribe card */}
         <div className="relative z-10">
           <div
-            className="border border-[#1a1a1a] bg-[#0a0a0a] transition-all duration-500"
+            className="border border-border bg-card transition-all duration-500"
             style={{
               boxShadow: confirmed
-                ? "0 0 40px rgba(200,255,0,0.04)"
+                ? "0 0 40px color-mix(in srgb, var(--primary) 4%, transparent)"
                 : "none",
             }}
           >
-            <div className="border-b border-[#1a1a1a] p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[#333]">
+            <div className="border-b border-border p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-foreground/20">
                 Email
               </div>
-              <div className="flex h-8 items-center border border-[#1a1a1a] bg-[#050505] px-3">
-                <span className="font-mono text-[13px] text-[#666]">
+              <div className="flex h-8 items-center border border-border bg-background px-3">
+                <span className="font-mono text-[13px] text-foreground/45">
                   {typedText}
                 </span>
                 {showCursor && (
-                  <span className="ml-0.5 inline-block h-3.5 w-[1.5px] animate-cursor-blink bg-[#c8ff00]" />
+                  <span className="ml-0.5 inline-block h-3.5 w-[1.5px] animate-cursor-blink bg-primary" />
                 )}
               </div>
             </div>
@@ -111,12 +111,12 @@ export function HeroAnimation() {
               <div
                 className="flex h-8 items-center justify-center font-mono text-[12px] font-bold uppercase tracking-widest transition-all duration-300"
                 style={{
-                  backgroundColor: allComplete ? "#c8ff00" : "#1a1a1a",
+                  backgroundColor: allComplete ? "var(--primary)" : "var(--border)",
                   color: allComplete
-                    ? "#050505"
+                    ? "var(--primary-foreground)"
                     : confirmed
-                      ? "#555"
-                      : "#444",
+                      ? "var(--muted-foreground)"
+                      : "var(--muted-foreground)",
                 }}
               >
                 {allComplete
@@ -136,7 +136,7 @@ export function HeroAnimation() {
           <div
             className="h-6 w-px transition-transform duration-500"
             style={{
-              backgroundColor: "#1a1a1a",
+              backgroundColor: "var(--border)",
               transform: `scaleY(${drippedCount > 0 ? 1 : 0})`,
               transformOrigin: "top",
             }}
@@ -149,7 +149,7 @@ export function HeroAnimation() {
             className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 transition-opacity duration-500"
             style={{
               background:
-                "linear-gradient(to bottom, #050505 0%, transparent 100%)",
+                "linear-gradient(to bottom, var(--background) 0%, transparent 100%)",
               opacity: drippedCount > 4 ? 1 : 0,
             }}
           />
@@ -172,11 +172,11 @@ export function HeroAnimation() {
                       <div className="flex items-center py-1">
                         <div className="flex flex-1 justify-center">
                           <div className="flex items-center gap-2">
-                            <div className="h-px w-6 border-t border-dashed border-[#222]" />
-                            <span className="font-mono text-[10px] uppercase tracking-widest text-[#333]">
+                            <div className="h-px w-6 border-t border-dashed border-border" />
+                            <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/20">
                               {i === 1 ? "instant" : "24h later"}
                             </span>
-                            <div className="h-px w-6 border-t border-dashed border-[#222]" />
+                            <div className="h-px w-6 border-t border-dashed border-border" />
                           </div>
                         </div>
                       </div>
@@ -188,14 +188,14 @@ export function HeroAnimation() {
                       style={{
                         borderColor:
                           isComplete && isLatest
-                            ? "#c8ff00"
+                            ? "var(--primary)"
                             : isLatest
-                              ? "#c8ff0030"
-                              : "#1a1a1a",
+                              ? "color-mix(in srgb, var(--primary) 19%, transparent)"
+                              : "var(--border)",
                         backgroundColor:
                           isComplete && isLatest
-                            ? "rgba(200,255,0,0.03)"
-                            : "#0a0a0a",
+                            ? "color-mix(in srgb, var(--primary) 3%, transparent)"
+                            : "var(--card)",
                       }}
                     >
                       {/* Icon */}
@@ -204,7 +204,7 @@ export function HeroAnimation() {
                           className="h-4 w-4 shrink-0"
                           fill="none"
                           viewBox="0 0 24 24"
-                          stroke={isLatest ? "#c8ff00" : "#333"}
+                          stroke={isLatest ? "var(--primary)" : "var(--border)"}
                           strokeWidth={1.5}
                         >
                           <path
@@ -218,7 +218,7 @@ export function HeroAnimation() {
                           className="h-4 w-4 shrink-0"
                           fill="none"
                           viewBox="0 0 24 24"
-                          stroke={isLatest ? "#c8ff00" : "#333"}
+                          stroke={isLatest ? "var(--primary)" : "var(--border)"}
                           strokeWidth={1.5}
                         >
                           <path
@@ -232,7 +232,7 @@ export function HeroAnimation() {
                           className="h-4 w-4 shrink-0"
                           fill="none"
                           viewBox="0 0 24 24"
-                          stroke={isLatest ? "#c8ff00" : "#333"}
+                          stroke={isLatest ? "var(--primary)" : "var(--border)"}
                           strokeWidth={1.5}
                         >
                           <path
@@ -249,10 +249,10 @@ export function HeroAnimation() {
                         style={{
                           color:
                             isComplete && isLatest
-                              ? "#c8ff00"
+                              ? "var(--primary)"
                               : isLatest
-                                ? "#c8ff00"
-                                : "#555",
+                                ? "var(--primary)"
+                                : "var(--muted-foreground)",
                         }}
                       >
                         {item.label}
@@ -260,7 +260,7 @@ export function HeroAnimation() {
 
                       {/* Right side */}
                       {isComplete && isLatest ? (
-                        <span className="ml-auto font-mono text-[10px] uppercase tracking-widest text-[#c8ff00]">
+                        <span className="ml-auto font-mono text-[10px] uppercase tracking-widest text-primary">
                           Complete
                         </span>
                       ) : (
@@ -269,16 +269,16 @@ export function HeroAnimation() {
                             className="h-1 w-8 rounded-full transition-colors duration-500"
                             style={{
                               backgroundColor: isLatest
-                                ? "#c8ff0015"
-                                : "#111",
+                                ? "color-mix(in srgb, var(--primary) 8%, transparent)"
+                                : "var(--secondary)",
                             }}
                           />
                           <div
                             className="h-1 w-5 rounded-full transition-colors duration-500"
                             style={{
                               backgroundColor: isLatest
-                                ? "#c8ff0010"
-                                : "#0d0d0d",
+                                ? "color-mix(in srgb, var(--primary) 6%, transparent)"
+                                : "var(--background)",
                             }}
                           />
                         </div>
