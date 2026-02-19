@@ -1,6 +1,7 @@
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CodeBlock } from "./code-block";
 import { DocsNav } from "./docs-nav";
 
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
 
 function Code({ children }: { children: React.ReactNode }) {
   return (
-    <code className="bg-[#111] px-1.5 py-0.5 font-mono text-[13px] text-[#c8ff00]">
+    <code className="bg-secondary px-1.5 py-0.5 font-mono text-[13px] text-primary">
       {children}
     </code>
   );
@@ -40,14 +41,14 @@ function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <h2
       id={id}
-      className="group/h2 scroll-mt-20 text-2xl font-bold tracking-tight text-[#e8e8e8] md:text-3xl"
+      className="group/h2 scroll-mt-20 text-2xl font-bold tracking-tight text-foreground md:text-3xl"
     >
       <a
         href={`#${id}`}
         className="no-underline text-inherit hover:no-underline"
       >
         {children}
-        <span className="ml-2 text-[#555] opacity-0 transition-opacity group-hover/h2:opacity-100">
+        <span className="ml-2 text-foreground/35 opacity-0 transition-opacity group-hover/h2:opacity-100">
           #
         </span>
       </a>
@@ -59,7 +60,7 @@ function H3({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <h3
       id={id}
-      className="scroll-mt-20 text-lg font-bold tracking-tight text-[#e8e8e8]"
+      className="scroll-mt-20 text-lg font-bold tracking-tight text-foreground"
     >
       {children}
     </h3>
@@ -67,11 +68,15 @@ function H3({ id, children }: { id: string; children: React.ReactNode }) {
 }
 
 function P({ children }: { children: React.ReactNode }) {
-  return <p className="text-[15px] leading-[1.8] text-[#999]">{children}</p>;
+  return (
+    <p className="text-[15px] leading-[1.8] text-muted-foreground">
+      {children}
+    </p>
+  );
 }
 
 function Strong({ children }: { children: React.ReactNode }) {
-  return <strong className="font-semibold text-[#e8e8e8]">{children}</strong>;
+  return <strong className="font-semibold text-foreground">{children}</strong>;
 }
 
 /* ── Sidebar Navigation Data ── */
@@ -121,45 +126,8 @@ const NAV = [
 
 export default function DocsPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-[#e8e8e8] selection:bg-[#c8ff00]/20 selection:text-[#c8ff00]">
-      {/* ── Header ── */}
-      <header className="sticky top-0 z-40 border-b border-[#1a1a1a] bg-[#050505]/90 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-6">
-          <Link
-            href="/"
-            className="font-mono text-sm font-bold tracking-tight text-[#e8e8e8] no-underline"
-          >
-            ContentDrip
-          </Link>
-          <nav className="flex items-center gap-6">
-            <Link
-              href="/docs"
-              className="font-mono text-sm text-[#e8e8e8] no-underline"
-            >
-              docs
-            </Link>
-            <a
-              href="https://my-contentdrip-course.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-sm text-[#666] no-underline transition-colors hover:text-[#e8e8e8]"
-            >
-              demo
-            </a>
-            <a
-              href="https://github.com/petergombos/contentdrip"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#666] no-underline transition-colors hover:text-[#e8e8e8]"
-              aria-label="GitHub"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-            </a>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen">
+      <SiteHeader maxWidth="max-w-[1400px]" />
 
       <div className="mx-auto max-w-[1400px] lg:grid lg:grid-cols-[240px_1fr]">
         <DocsNav items={NAV} />
@@ -167,14 +135,14 @@ export default function DocsPage() {
         {/* ── Content ── */}
         <main className="min-w-0 px-6 py-10 md:px-10 md:py-14 lg:px-16">
           {/* Page title */}
-          <div className="mb-14 border-b border-[#1a1a1a] pb-10">
-            <p className="font-mono text-[13px] uppercase tracking-[0.3em] text-[#c8ff00]">
+          <div className="mb-14 border-b border-border pb-10">
+            <p className="font-mono text-[13px] uppercase tracking-[0.3em] text-primary">
               Documentation
             </p>
             <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
               ContentDrip Docs
             </h1>
-            <p className="mt-3 max-w-xl font-mono text-base leading-relaxed text-[#777]">
+            <p className="mt-3 max-w-xl font-mono text-base leading-relaxed text-foreground/50">
               Everything you need to set up, customize, and deploy your own
               email drip courses.
             </p>
@@ -685,7 +653,7 @@ one lesson each morning at the time you chose.
                 components. See the{" "}
                 <a
                   href="#custom-branding"
-                  className="text-[#c8ff00] no-underline hover:underline"
+                  className="text-primary no-underline hover:underline"
                 >
                   Custom Email Branding
                 </a>{" "}
@@ -789,22 +757,24 @@ export function MyEmailShell(props: PackEmailShellProps) {
               <div className="overflow-x-auto">
                 <table className="w-full font-mono text-[13px]">
                   <thead>
-                    <tr className="border-b border-[#1a1a1a] text-left">
-                      <th className="pb-2 pr-6 text-[#c8ff00]">Field</th>
-                      <th className="pb-2 pr-6 text-[#c8ff00]">Required</th>
-                      <th className="pb-2 text-[#c8ff00]">Description</th>
+                    <tr className="border-b border-border text-left">
+                      <th className="pb-2 pr-6 text-primary">Field</th>
+                      <th className="pb-2 pr-6 text-primary">Required</th>
+                      <th className="pb-2 text-primary">Description</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#1a1a1a]">
+                  <tbody className="divide-y divide-border">
                     <tr>
-                      <td className="py-2 pr-6 text-[#e8e8e8]">subject</td>
-                      <td className="py-2 pr-6 text-[#777]">Yes</td>
-                      <td className="py-2 text-[#777]">Email subject line</td>
+                      <td className="py-2 pr-6 text-foreground">subject</td>
+                      <td className="py-2 pr-6 text-foreground/50">Yes</td>
+                      <td className="py-2 text-foreground/50">
+                        Email subject line
+                      </td>
                     </tr>
                     <tr>
-                      <td className="py-2 pr-6 text-[#e8e8e8]">preview</td>
-                      <td className="py-2 pr-6 text-[#777]">No</td>
-                      <td className="py-2 text-[#777]">
+                      <td className="py-2 pr-6 text-foreground">preview</td>
+                      <td className="py-2 pr-6 text-foreground/50">No</td>
+                      <td className="py-2 text-foreground/50">
                         Preview text shown in email clients (inbox snippet)
                       </td>
                     </tr>
@@ -845,12 +815,12 @@ export function MyEmailShell(props: PackEmailShellProps) {
               <div className="overflow-x-auto">
                 <table className="w-full font-mono text-[13px]">
                   <thead>
-                    <tr className="border-b border-[#1a1a1a] text-left">
-                      <th className="pb-2 pr-6 text-[#c8ff00]">Variable</th>
-                      <th className="pb-2 text-[#c8ff00]">Description</th>
+                    <tr className="border-b border-border text-left">
+                      <th className="pb-2 pr-6 text-primary">Variable</th>
+                      <th className="pb-2 text-primary">Description</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#1a1a1a]">
+                  <tbody className="divide-y divide-border">
                     {[
                       [
                         "{{companionUrl}}",
@@ -874,10 +844,10 @@ export function MyEmailShell(props: PackEmailShellProps) {
                       ],
                     ].map(([v, desc]) => (
                       <tr key={v}>
-                        <td className="py-2 pr-6 whitespace-nowrap text-[#e8e8e8]">
+                        <td className="py-2 pr-6 whitespace-nowrap text-foreground">
                           {v}
                         </td>
-                        <td className="py-2 text-[#777]">{desc}</td>
+                        <td className="py-2 text-foreground/50">{desc}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -919,13 +889,13 @@ export function MyEmailShell(props: PackEmailShellProps) {
               <div className="overflow-x-auto">
                 <table className="w-full font-mono text-[13px]">
                   <thead>
-                    <tr className="border-b border-[#1a1a1a] text-left">
-                      <th className="pb-2 pr-4 text-[#c8ff00]">Variable</th>
-                      <th className="pb-2 pr-4 text-[#c8ff00]">Req</th>
-                      <th className="pb-2 text-[#c8ff00]">Description</th>
+                    <tr className="border-b border-border text-left">
+                      <th className="pb-2 pr-4 text-primary">Variable</th>
+                      <th className="pb-2 pr-4 text-primary">Req</th>
+                      <th className="pb-2 text-primary">Description</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#1a1a1a]">
+                  <tbody className="divide-y divide-border">
                     {[
                       [
                         "TURSO_DATABASE_URL",
@@ -979,11 +949,11 @@ export function MyEmailShell(props: PackEmailShellProps) {
                       ],
                     ].map(([name, req, desc]) => (
                       <tr key={name}>
-                        <td className="py-2 pr-4 whitespace-nowrap text-[#e8e8e8]">
+                        <td className="py-2 pr-4 whitespace-nowrap text-foreground">
                           {name}
                         </td>
-                        <td className="py-2 pr-4 text-[#777]">{req}</td>
-                        <td className="py-2 text-[#777]">{desc}</td>
+                        <td className="py-2 pr-4 text-foreground/50">{req}</td>
+                        <td className="py-2 text-foreground/50">{desc}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1158,19 +1128,23 @@ createdAt         integer  creation timestamp (ms)`}</CodeBlock>
             </section>
 
             {/* ── Back to top / CTA ── */}
-            <div className="mt-20 border-t border-[#1a1a1a] pt-10">
-              <p className="font-mono text-base text-[#777]">Ready to build?</p>
+            <div className="mt-20 border-t border-border pt-10">
+              <p className="font-mono text-base text-foreground/50">
+                Ready to build?
+              </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
-                <Link
-                  href="/my-course"
-                  className="group inline-flex h-9 items-center gap-2 bg-[#c8ff00] px-4 font-mono text-[13px] font-bold uppercase tracking-widest text-[#050505] no-underline transition-colors hover:bg-[#d8ff44]"
+                <a
+                  href="https://my-contentdrip-course.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex h-9 items-center gap-2 bg-primary px-4 font-mono text-[13px] font-bold uppercase tracking-widest text-primary-foreground no-underline transition-colors hover:bg-[#d8ff44]"
                 >
                   See the Demo
                   <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                </Link>
+                </a>
                 <a
                   href="#introduction"
-                  className="inline-flex h-9 items-center border border-[#333] px-4 font-mono text-[13px] font-bold uppercase tracking-widest text-[#777] no-underline transition-colors hover:border-[#555] hover:text-[#e8e8e8]"
+                  className="inline-flex h-9 items-center border border-foreground/20 px-4 font-mono text-[13px] font-bold uppercase tracking-widest text-foreground/50 no-underline transition-colors hover:border-foreground/35 hover:text-foreground"
                 >
                   Back to Top
                 </a>
@@ -1179,43 +1153,7 @@ createdAt         integer  creation timestamp (ms)`}</CodeBlock>
           </div>
         </main>
       </div>
-
-      {/* ── Footer ── */}
-      <footer className="border-t border-[#1a1a1a]">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[13px] text-[#333]">
-            &copy; {new Date().getFullYear()} ContentDrip
-          </p>
-          <nav className="flex items-center gap-6">
-            <Link
-              href="/"
-              className="font-mono text-[13px] text-[#444] no-underline transition-colors hover:text-[#888]"
-            >
-              home
-            </Link>
-            <Link
-              href="/my-course"
-              className="font-mono text-[13px] text-[#444] no-underline transition-colors hover:text-[#888]"
-            >
-              demo
-            </Link>
-            <Link
-              href="/manage"
-              className="font-mono text-[13px] text-[#444] no-underline transition-colors hover:text-[#888]"
-            >
-              manage
-            </Link>
-            <a
-              href="https://github.com/petergombos/contentdrip"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[13px] text-[#444] no-underline transition-colors hover:text-[#888]"
-            >
-              github
-            </a>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter maxWidth="max-w-[1400px]" />
     </div>
   );
 }

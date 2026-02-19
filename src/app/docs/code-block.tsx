@@ -53,9 +53,9 @@ export async function CodeBlock({
   });
 
   return (
-    <div className="group/code relative border border-[#1a1a1a] bg-[#0a0a0a]">
+    <div className="group/code relative border border-border bg-card">
       {label && (
-        <div className="border-b border-[#1a1a1a] px-4 py-2 font-mono text-xs uppercase tracking-widest text-[#444]">
+        <div className="border-b border-border px-4 py-2 font-mono text-xs uppercase tracking-widest text-foreground/28">
           {label}
         </div>
       )}

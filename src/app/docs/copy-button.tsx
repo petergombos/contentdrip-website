@@ -13,7 +13,7 @@ export function CopyButton({ text }: { text: string }) {
           setTimeout(() => setCopied(false), 1500);
         });
       }}
-      className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center border border-[#1a1a1a] bg-[#0a0a0a] text-[#555] transition-colors hover:border-[#333] hover:text-[#c8ff00]"
+      className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center border border-border bg-card text-foreground/35 transition-colors hover:border-foreground/20 hover:text-primary"
       aria-label="Copy code"
     >
       {copied ? (
