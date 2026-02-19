@@ -139,7 +139,7 @@ export default function DocsPage() {
               docs
             </Link>
             <Link
-              href="/mindful-productivity"
+              href="/my-course"
               className="font-mono text-sm text-[#666] no-underline transition-colors hover:text-[#e8e8e8]"
             >
               demo
@@ -271,10 +271,10 @@ CRON_SECRET=generate-another-random-string
               <H3 id="qs-run">5. Start the dev server</H3>
               <CodeBlock label="terminal">{`npm run dev`}</CodeBlock>
               <P>
-                Visit <Code>http://localhost:3000/mindful-productivity</Code> to
-                see the example content pack landing page. The subscribe form is
-                fully functional — try subscribing with a test email to see the
-                full flow.
+                Visit <Code>http://localhost:3000</Code> to see the example
+                content pack landing page. The subscribe form is fully
+                functional — try subscribing with a test email to see the full
+                flow.
               </P>
             </section>
 
@@ -287,10 +287,7 @@ CRON_SECRET=generate-another-random-string
               </P>
               <CodeBlock label="project root">{`src/
 ├── app/                      # Next.js App Router
-│   ├── page.tsx              # Marketing homepage
-│   ├── mindful-productivity/  # Example content pack landing
-│   ├── deep-work/            # Example content pack landing
-│   ├── docs/page.tsx         # This documentation page
+│   ├── page.tsx              # Project landing page
 │   ├── manage/               # Subscription management
 │   ├── confirm/[token]/      # Email confirmation handler
 │   ├── p/[packKey]/[slug]/   # Companion pages
@@ -303,7 +300,7 @@ CRON_SECRET=generate-another-random-string
 ├── content-packs/            # Your courses live here
 │   ├── registry.ts           # ContentPack type definitions
 │   ├── index.ts              # Barrel file (imports all packs)
-│   └── mindful-productivity/ # Example pack (delete or modify)
+│   └── my-course/ # Example pack (delete or modify)
 ├── components/               # Shared UI components
 ├── domains/                  # Business logic
 │   └── subscriptions/
@@ -616,8 +613,8 @@ export class MyCustomAdapter implements MailAdapter {
               <H2 id="creating-a-pack">Creating a Content Pack</H2>
               <P>
                 Follow these steps to create a new content pack from scratch.
-                You can also copy and modify the example{" "}
-                <Code>mindful-productivity</Code> pack as a starting point.
+                You can also copy and modify the example <Code>my-course</Code>{" "}
+                pack as a starting point.
               </P>
 
               <H3 id="cap-directory">1. Create the directory structure</H3>
@@ -698,7 +695,7 @@ one lesson each morning at the time you chose.
                 Add an import to the barrel file so ContentDrip discovers your
                 pack:
               </P>
-              <CodeBlock label="src/content-packs/index.ts">{`import "@/content-packs/mindful-productivity/pack"; // Example pack
+              <CodeBlock label="src/content-packs/index.ts">{`import "@/content-packs/my-course/pack"; // Example pack
 import "@/content-packs/my-course/pack";             // Your new pack`}</CodeBlock>
             </section>
 
@@ -771,11 +768,9 @@ export function MyEmailShell(props: PackEmailShellProps) {
               </P>
               <P>
                 Refer to the{" "}
-                <Code>
-                  src/content-packs/mindful-productivity/email-shell.tsx
-                </Code>{" "}
-                file in the repository for a full production example with
-                images, branded colors, and responsive layout.
+                <Code>src/content-packs/my-course/email-shell.tsx</Code> file in
+                the repository for a full production example with images,
+                branded colors, and responsive layout.
               </P>
             </section>
 
@@ -1165,7 +1160,7 @@ createdAt         integer  creation timestamp (ms)`}</CodeBlock>
               <p className="font-mono text-base text-[#777]">Ready to build?</p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <Link
-                  href="/mindful-productivity"
+                  href="/my-course"
                   className="group inline-flex h-9 items-center gap-2 bg-[#c8ff00] px-4 font-mono text-[13px] font-bold uppercase tracking-widest text-[#050505] no-underline transition-colors hover:bg-[#d8ff44]"
                 >
                   See the Demo
@@ -1197,7 +1192,7 @@ createdAt         integer  creation timestamp (ms)`}</CodeBlock>
               home
             </Link>
             <Link
-              href="/mindful-productivity"
+              href="/my-course"
               className="font-mono text-[13px] text-[#444] no-underline transition-colors hover:text-[#888]"
             >
               demo
