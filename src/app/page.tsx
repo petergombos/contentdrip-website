@@ -94,7 +94,7 @@ export default function HomePage() {
               demo
             </Link>
             <a
-              href="https://github.com/petergombos/content-drip"
+              href="https://github.com/petergombos/contentdrip"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#666] no-underline transition-colors hover:text-[#e8e8e8]"
@@ -1720,7 +1720,7 @@ export default function HomePage() {
                 demo
               </Link>
               <a
-                href="https://github.com/petergombos/content-drip"
+                href="https://github.com/petergombos/contentdrip"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#444] no-underline transition-colors hover:text-[#888]"

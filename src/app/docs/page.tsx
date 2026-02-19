@@ -1,6 +1,6 @@
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { CodeBlock } from "./code-block";
 import { DocsNav } from "./docs-nav";
 
@@ -22,9 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Documentation — ContentDrip",
-    images: [
-      "/api/og?type=default&title=Documentation&label=ContentDrip",
-    ],
+    images: ["/api/og?type=default&title=Documentation&label=ContentDrip"],
   },
 };
 
@@ -38,14 +36,7 @@ function Code({ children }: { children: React.ReactNode }) {
   );
 }
 
-
-function H2({
-  id,
-  children,
-}: {
-  id: string;
-  children: React.ReactNode;
-}) {
+function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <h2
       id={id}
@@ -64,13 +55,7 @@ function H2({
   );
 }
 
-function H3({
-  id,
-  children,
-}: {
-  id: string;
-  children: React.ReactNode;
-}) {
+function H3({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <h3
       id={id}
@@ -82,9 +67,7 @@ function H3({
 }
 
 function P({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-[15px] leading-[1.8] text-[#999]">{children}</p>
-  );
+  return <p className="text-[15px] leading-[1.8] text-[#999]">{children}</p>;
 }
 
 function Strong({ children }: { children: React.ReactNode }) {
@@ -162,7 +145,7 @@ export default function DocsPage() {
               demo
             </Link>
             <a
-              href="https://github.com/petergombos/content-drip"
+              href="https://github.com/petergombos/contentdrip"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#666] no-underline transition-colors hover:text-[#e8e8e8]"
@@ -235,7 +218,7 @@ export default function DocsPage() {
               <P>Get a local development instance running in five steps.</P>
 
               <H3 id="qs-clone">1. Clone the repository</H3>
-              <CodeBlock label="terminal">{`git clone https://github.com/petergombos/content-drip.git
+              <CodeBlock label="terminal">{`git clone https://github.com/petergombos/contentdrip.git
 cd content-drip`}</CodeBlock>
 
               <H3 id="qs-install">2. Install dependencies</H3>
@@ -274,7 +257,8 @@ CRON_SECRET=generate-another-random-string
 # DRIP_TIME_SCALE=144`}</CodeBlock>
               <P>
                 If <Code>RESEND_API_KEY</Code> is set, ContentDrip uses Resend.
-                Otherwise it falls back to Postmark. Only one provider is needed.
+                Otherwise it falls back to Postmark. Only one provider is
+                needed.
               </P>
 
               <H3 id="qs-db">4. Push the database schema</H3>
@@ -287,10 +271,10 @@ CRON_SECRET=generate-another-random-string
               <H3 id="qs-run">5. Start the dev server</H3>
               <CodeBlock label="terminal">{`npm run dev`}</CodeBlock>
               <P>
-                Visit <Code>http://localhost:3000/mindful-productivity</Code> to see the
-                example content pack landing page. The subscribe form is fully
-                functional — try subscribing with a test email to see the full
-                flow.
+                Visit <Code>http://localhost:3000/mindful-productivity</Code> to
+                see the example content pack landing page. The subscribe form is
+                fully functional — try subscribing with a test email to see the
+                full flow.
               </P>
             </section>
 
@@ -381,8 +365,8 @@ interface ContentStep {
                 The optional <Code>cadence</Code> field locks subscribers to a
                 fixed delivery frequency. When set (e.g.,{" "}
                 <Code>{`"0 8 * * *"`}</Code> for daily at 8am), subscribers can
-                only choose their timezone and send hour — they cannot change the
-                interval. When omitted, subscribers pick their own frequency
+                only choose their timezone and send hour — they cannot change
+                the interval. When omitted, subscribers pick their own frequency
                 (daily, every other day, weekly, etc.) from a dropdown.
               </P>
             </section>
@@ -418,14 +402,15 @@ interface ContentStep {
                 each active subscription: is the next step due based on the
                 subscriber&apos;s chosen time and timezone? If yes, it loads the
                 markdown, replaces placeholder variables with signed URLs,
-                renders it through the EmailShell, and sends it via your configured email adapter.
+                renders it through the EmailShell, and sends it via your
+                configured email adapter.
               </P>
               <P>
                 <Strong>Pause / Resume:</Strong> Subscribers can pause delivery
-                at any time via a signed link in any email. The status changes to{" "}
-                <Code>PAUSED</Code>. The scheduler skips paused subscriptions.
-                When resumed (via the manage page), delivery continues from the
-                next unsent step.
+                at any time via a signed link in any email. The status changes
+                to <Code>PAUSED</Code>. The scheduler skips paused
+                subscriptions. When resumed (via the manage page), delivery
+                continues from the next unsent step.
               </P>
               <P>
                 <Strong>Completion:</Strong> After the final step is sent, the
@@ -462,15 +447,15 @@ interface ContentStep {
                 expression like <Code>0 8 * * *</Code> is stored along with
                 their timezone (e.g., <Code>America/New_York</Code>). Each
                 minute, the scheduler parses the expression in the
-                subscriber&apos;s timezone using{" "}
-                <Code>cron-parser</Code> and checks if the current
-                time falls within the last 60 seconds of the scheduled time.
+                subscriber&apos;s timezone using <Code>cron-parser</Code> and
+                checks if the current time falls within the last 60 seconds of
+                the scheduled time.
               </P>
               <H3 id="scheduling-fast">Fast-Test Mode</H3>
               <P>
                 For local development and testing, you don&apos;t want to wait
-                24 hours between emails. Set{" "}
-                <Code>DRIP_TIME_SCALE</Code> to speed up delivery:
+                24 hours between emails. Set <Code>DRIP_TIME_SCALE</Code> to
+                speed up delivery:
               </P>
               <CodeBlock label="fast-test examples">{`# 1 day becomes 10 minutes (144x speed)
 DRIP_TIME_SCALE=144
@@ -521,8 +506,8 @@ DRIP_TIME_SCALE=1440
               </P>
               <H3 id="scheduling-retries">Retry Logic</H3>
               <P>
-                The cron endpoint implements automatic retries for Turso database
-                capacity errors (503). It will retry up to 3 times with
+                The cron endpoint implements automatic retries for Turso
+                database capacity errors (503). It will retry up to 3 times with
                 exponential backoff (500ms, 1500ms). Other errors are returned
                 immediately.
               </P>
@@ -533,16 +518,16 @@ DRIP_TIME_SCALE=1440
               <H2 id="email-adapters">Email Adapters</H2>
               <P>
                 ContentDrip uses a pluggable adapter pattern for sending emails.
-                Two adapters ship out of the box:{" "}
-                <Strong>Resend</Strong> and <Strong>Postmark</Strong>. The
-                active adapter is determined automatically from your environment
-                variables — if <Code>RESEND_API_KEY</Code> is set, Resend is
-                used. Otherwise, it falls back to Postmark.
+                Two adapters ship out of the box: <Strong>Resend</Strong> and{" "}
+                <Strong>Postmark</Strong>. The active adapter is determined
+                automatically from your environment variables — if{" "}
+                <Code>RESEND_API_KEY</Code> is set, Resend is used. Otherwise,
+                it falls back to Postmark.
               </P>
               <H3 id="adapters-interface">The MailAdapter interface</H3>
               <P>
-                Every adapter implements a single <Code>send</Code> method.
-                This is the entire contract:
+                Every adapter implements a single <Code>send</Code> method. This
+                is the entire contract:
               </P>
               <CodeBlock label="src/domains/mail/ports/mail-adapter.ts">{`interface MailAdapter {
   send(options: {
@@ -556,9 +541,9 @@ DRIP_TIME_SCALE=1440
 }`}</CodeBlock>
               <H3 id="adapters-custom">Building a custom adapter</H3>
               <P>
-                To use a different email provider (SendGrid, AWS SES,
-                Mailgun, etc.), create a class that implements{" "}
-                <Code>MailAdapter</Code> and wire it up in{" "}
+                To use a different email provider (SendGrid, AWS SES, Mailgun,
+                etc.), create a class that implements <Code>MailAdapter</Code>{" "}
+                and wire it up in{" "}
                 <Code>src/domains/mail/create-adapter.ts</Code>:
               </P>
               <CodeBlock label="example: custom adapter">{`import type { MailAdapter } from "../ports/mail-adapter";
@@ -577,9 +562,9 @@ export class MyCustomAdapter implements MailAdapter {
               <P>
                 Then update <Code>create-adapter.ts</Code> to return your
                 adapter based on an environment variable. That&apos;s it — no
-                other changes needed. The rest of the system (scheduler,
-                send log, retry logic) works the same regardless of which
-                adapter is active.
+                other changes needed. The rest of the system (scheduler, send
+                log, retry logic) works the same regardless of which adapter is
+                active.
               </P>
             </section>
 
@@ -786,9 +771,11 @@ export function MyEmailShell(props: PackEmailShellProps) {
               </P>
               <P>
                 Refer to the{" "}
-                <Code>src/content-packs/mindful-productivity/email-shell.tsx</Code> file in the
-                repository for a full production example with images, branded
-                colors, and responsive layout.
+                <Code>
+                  src/content-packs/mindful-productivity/email-shell.tsx
+                </Code>{" "}
+                file in the repository for a full production example with
+                images, branded colors, and responsive layout.
               </P>
             </section>
 
@@ -797,9 +784,9 @@ export function MyEmailShell(props: PackEmailShellProps) {
               <H2 id="markdown-format">Markdown &amp; Frontmatter</H2>
               <P>
                 Email content is written in standard markdown with YAML
-                frontmatter. ContentDrip uses{" "}
-                <Code>gray-matter</Code> to parse the frontmatter and a markdown
-                parser to convert the body to HTML.
+                frontmatter. ContentDrip uses <Code>gray-matter</Code> to parse
+                the frontmatter and a markdown parser to convert the body to
+                HTML.
               </P>
               <H3 id="mf-frontmatter">Frontmatter fields</H3>
               <div className="overflow-x-auto">
@@ -815,9 +802,7 @@ export function MyEmailShell(props: PackEmailShellProps) {
                     <tr>
                       <td className="py-2 pr-6 text-[#e8e8e8]">subject</td>
                       <td className="py-2 pr-6 text-[#777]">Yes</td>
-                      <td className="py-2 text-[#777]">
-                        Email subject line
-                      </td>
+                      <td className="py-2 text-[#777]">Email subject line</td>
                     </tr>
                     <tr>
                       <td className="py-2 pr-6 text-[#e8e8e8]">preview</td>
@@ -870,11 +855,26 @@ export function MyEmailShell(props: PackEmailShellProps) {
                   </thead>
                   <tbody className="divide-y divide-[#1a1a1a]">
                     {[
-                      ["{{companionUrl}}", "Web-readable version of this specific lesson. Points to /p/{packKey}/{stepSlug}."],
-                      ["{{confirmUrl}}", "Confirmation link for the subscriber. Used in the confirm email template (emails/confirm.md)."],
-                      ["{{manageUrl}}", "Manage subscription preferences page. Uses a signed single-use token for authentication."],
-                      ["{{pauseUrl}}", "One-click pause delivery. Hits /api/pause with a signed token. Subscriber can resume later."],
-                      ["{{stopUrl}}", "One-click unsubscribe. Hits /api/stop with a signed token. Immediately stops all delivery."],
+                      [
+                        "{{companionUrl}}",
+                        "Web-readable version of this specific lesson. Points to /p/{packKey}/{stepSlug}.",
+                      ],
+                      [
+                        "{{confirmUrl}}",
+                        "Confirmation link for the subscriber. Used in the confirm email template (emails/confirm.md).",
+                      ],
+                      [
+                        "{{manageUrl}}",
+                        "Manage subscription preferences page. Uses a signed single-use token for authentication.",
+                      ],
+                      [
+                        "{{pauseUrl}}",
+                        "One-click pause delivery. Hits /api/pause with a signed token. Subscriber can resume later.",
+                      ],
+                      [
+                        "{{stopUrl}}",
+                        "One-click unsubscribe. Hits /api/stop with a signed token. Immediately stops all delivery.",
+                      ],
                     ].map(([v, desc]) => (
                       <tr key={v}>
                         <td className="py-2 pr-6 whitespace-nowrap text-[#e8e8e8]">
@@ -886,9 +886,7 @@ export function MyEmailShell(props: PackEmailShellProps) {
                   </tbody>
                 </table>
               </div>
-              <P>
-                Example usage in markdown:
-              </P>
+              <P>Example usage in markdown:</P>
               <CodeBlock label="emails/day-1.md (excerpt)">{`Can't read this email? [View it online]({{companionUrl}}).
 
 ---
@@ -932,16 +930,56 @@ export function MyEmailShell(props: PackEmailShellProps) {
                   </thead>
                   <tbody className="divide-y divide-[#1a1a1a]">
                     {[
-                      ["TURSO_DATABASE_URL", "Yes", "LibSQL / Turso database connection URL"],
-                      ["TURSO_AUTH_TOKEN", "Yes", "Database authentication token"],
-                      ["APP_BASE_URL", "Yes", "Public URL of your app (e.g. https://yourdomain.com). Used for generating subscriber links."],
-                      ["RESEND_API_KEY", "No*", "Resend API key. If set, Resend is used as the email provider"],
-                      ["POSTMARK_SERVER_TOKEN", "No*", "Postmark API key. Used when RESEND_API_KEY is not set"],
-                      ["POSTMARK_MESSAGE_STREAM", "No", "Postmark message stream name (e.g. content-emails)"],
-                      ["MAIL_FROM", "Yes", "Sender email address (must be verified with your email provider)"],
-                      ["CRON_SECRET", "Yes", "Bearer token to authenticate /api/cron requests"],
-                      ["DRIP_TIME_SCALE", "No", "Speed multiplier for testing. 144 = 1 day per 10 min. 1440 = 1 day per 1 min."],
-                      ["VERCEL_ENV", "No", "Set automatically by Vercel. Enables preview-mode cron auth."],
+                      [
+                        "TURSO_DATABASE_URL",
+                        "Yes",
+                        "LibSQL / Turso database connection URL",
+                      ],
+                      [
+                        "TURSO_AUTH_TOKEN",
+                        "Yes",
+                        "Database authentication token",
+                      ],
+                      [
+                        "APP_BASE_URL",
+                        "Yes",
+                        "Public URL of your app (e.g. https://yourdomain.com). Used for generating subscriber links.",
+                      ],
+                      [
+                        "RESEND_API_KEY",
+                        "No*",
+                        "Resend API key. If set, Resend is used as the email provider",
+                      ],
+                      [
+                        "POSTMARK_SERVER_TOKEN",
+                        "No*",
+                        "Postmark API key. Used when RESEND_API_KEY is not set",
+                      ],
+                      [
+                        "POSTMARK_MESSAGE_STREAM",
+                        "No",
+                        "Postmark message stream name (e.g. content-emails)",
+                      ],
+                      [
+                        "MAIL_FROM",
+                        "Yes",
+                        "Sender email address (must be verified with your email provider)",
+                      ],
+                      [
+                        "CRON_SECRET",
+                        "Yes",
+                        "Bearer token to authenticate /api/cron requests",
+                      ],
+                      [
+                        "DRIP_TIME_SCALE",
+                        "No",
+                        "Speed multiplier for testing. 144 = 1 day per 10 min. 1440 = 1 day per 1 min.",
+                      ],
+                      [
+                        "VERCEL_ENV",
+                        "No",
+                        "Set automatically by Vercel. Enables preview-mode cron auth.",
+                      ],
                     ].map(([name, req, desc]) => (
                       <tr key={name}>
                         <td className="py-2 pr-4 whitespace-nowrap text-[#e8e8e8]">
@@ -1028,8 +1066,8 @@ createdAt         integer  creation timestamp (ms)`}</CodeBlock>
                 non-production Vercel environments, also accepts{" "}
                 <Code>?secret={"{CRON_SECRET}"}</Code> as a query parameter. For
                 small subscriber counts (&le;25), processes locally. For larger
-                counts, fans out to parallel{" "}
-                <Code>/api/send-batch</Code> workers.
+                counts, fans out to parallel <Code>/api/send-batch</Code>{" "}
+                workers.
               </P>
               <CodeBlock label="response (local mode)">{`{
   "success": true,
@@ -1060,8 +1098,8 @@ createdAt         integer  creation timestamp (ms)`}</CodeBlock>
                 Internal worker endpoint called by the cron dispatcher during
                 fan-out. Authenticated via{" "}
                 <Code>Authorization: Bearer {"{CRON_SECRET}"}</Code>. Receives a
-                batch of subscription IDs, a shared timestamp, and the
-                fast-test step interval. Not intended to be called directly.
+                batch of subscription IDs, a shared timestamp, and the fast-test
+                step interval. Not intended to be called directly.
               </P>
 
               <H3 id="api-pause">GET /api/pause</H3>
@@ -1124,9 +1162,7 @@ createdAt         integer  creation timestamp (ms)`}</CodeBlock>
 
             {/* ── Back to top / CTA ── */}
             <div className="mt-20 border-t border-[#1a1a1a] pt-10">
-              <p className="font-mono text-base text-[#777]">
-                Ready to build?
-              </p>
+              <p className="font-mono text-base text-[#777]">Ready to build?</p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <Link
                   href="/mindful-productivity"
@@ -1173,7 +1209,7 @@ createdAt         integer  creation timestamp (ms)`}</CodeBlock>
               manage
             </Link>
             <a
-              href="https://github.com/petergombos/content-drip"
+              href="https://github.com/petergombos/contentdrip"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[13px] text-[#444] no-underline transition-colors hover:text-[#888]"
