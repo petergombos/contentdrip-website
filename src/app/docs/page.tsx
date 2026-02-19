@@ -301,7 +301,7 @@ CRON_SECRET=generate-another-random-string
   description: string;        // Short description for landing pages
   steps: ContentStep[];       // Ordered list of lessons
   EmailShell?: Component;     // Optional custom email template
-  cadence?: string;           // Optional fixed cron (e.g. "0 8 * * *")
+  frequency?: string;           // Optional fixed cron (e.g. "0 8 * * *")
 }
 
 interface ContentStep {
@@ -329,7 +329,7 @@ interface ContentStep {
                 default shell is used.
               </P>
               <P>
-                The optional <Code>cadence</Code> field locks subscribers to a
+                The optional <Code>frequency</Code> field locks subscribers to a
                 fixed delivery frequency. When set (e.g.,{" "}
                 <Code>{`"0 8 * * *"`}</Code> for daily at 8am), subscribers can
                 only choose their timezone and send hour — they cannot change
@@ -609,7 +609,7 @@ const pack: ContentPack = {
   ],
   EmailShell: MyEmailShell,
   // Optional: lock subscribers to daily delivery at their chosen hour
-  // cadence: "0 * * * *",
+  // frequency: "0 * * * *",
 };
 
 registerPack(pack);`}</CodeBlock>

@@ -534,7 +534,7 @@ export default function HomePage() {
                 slug: "/mindful-productivity",
                 desc: "A free 5-day email course on building sustainable focus and productivity habits.",
                 steps: 6,
-                cadence: "daily at 8am",
+                frequency: "daily at 8am",
                 subs: 142,
                 active: 89,
                 completed: 53,
@@ -553,7 +553,7 @@ export default function HomePage() {
                 slug: "/deep-work",
                 desc: "A free 2-day email course on mastering deep work.",
                 steps: 3,
-                cadence: "subscriber picks",
+                frequency: "subscriber picks",
                 subs: 56,
                 active: 41,
                 completed: 15,
@@ -586,7 +586,7 @@ export default function HomePage() {
                     {pack.steps} lessons
                   </span>
                   <span className="font-mono text-[11px] text-foreground/28">
-                    {pack.cadence}
+                    {pack.frequency}
                   </span>
                 </div>
 
